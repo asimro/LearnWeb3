@@ -8,13 +8,13 @@ const accountS = "0x53Acdd0B5C83B9BA58849f07B8B88301C37f9619";
 const Private_Key = 'c85927cd1d3aedcfc615155149aaa8c13ca26f9d77704ed71abfc9e15a9949ef';
 const Private_KeyS = Buffer.from(Private_Key, 'hex');
 
-const accountR = "0x653A48939074AD27afBd28560642bBeCf9d8E1d7";
-// const accountR = "0xC7fE570c20F87b93574c35DF6a2F99EA53a439AB";
-const tokens = "555000000000000000000";
+const account1 = "0x653A48939074AD27afBd28560642bBeCf9d8E1d7";
+// const account2 = "0x4AD5187C111A2b06F5fC93afaDB81Fd9100A0c13";
+
+const tokens = web3.utils.toWei('444', 'ether');
 
 let ABI = require("./4-web3readcontractabi.js") ;
 const contractAddress = "0x44a80163171b442591c0864da1b134b12201a496";
-
 
 
 const contractWrite = async() => {
@@ -26,22 +26,22 @@ const contractWrite = async() => {
         const txObject = {
             nonce: web3.utils.toHex(txCount),
             to: contractAddress,
-            data: contract.methods.transfer(accountR, tokens).encodeABI(),
+            data: contract.methods.transfer(account1, tokens).encodeABI(),
             gasLimit: web3.utils.toHex(6000000),
             gasPrice: web3.utils.toHex(web3.utils.toWei('10', 'gwei'))
         }    
-       
+
         // signing transaction with private key
         const tx = new Tx(txObject, { chain: 'ropsten', hardfork: 'petersburg' });
         tx.sign(Private_KeyS);
         const serialized = tx.serialize();
         const raw = '0x' + serialized.toString('hex');
         
-
         // sending transaction on blockchain
         const singedTransaction =  await web3.eth.sendSignedTransaction(raw);
         console.log("singedTransaction", singedTransaction);
     }
+    
     catch (error) {
         console.log('error', error)
     }   
