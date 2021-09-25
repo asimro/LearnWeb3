@@ -10,16 +10,24 @@ const contractAddress = "0x44a80163171b442591c0864da1b134b12201a496";
 
 const contractEventCall = async() => {
     try{  
-        
         const contract = new web3.eth.Contract(ABI, contractAddress);
 
-        let getEvents = await contract.getPastEvents('Transfer',{
+        // getting 3rd transfer event from the block number 11100000 onward 
+        let getEvent = await contract.getPastEvents('Transfer',{
+            fromBlock:  11100000,
+            toBlock: "latest"
         });
-        console.log("Transfer", getEvents);
+        console.log("Transfer", getEvent[3]);
+
+        // getting total number of event after block number 11100000
+        let getAllEvents = await contract.getPastEvents('AllEvents',{
+            fromBlock:  11100000,
+            toBlock: "latest"
+        });
+        console.log("No of Total Events", getAllEvents.length);
     }
     catch (error) {
         console.log('error', error)
     }   
 }
-
 contractEventCall()
