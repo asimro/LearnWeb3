@@ -4,12 +4,6 @@ const rpcURL = "https://ropsten.infura.io/v3/80c615a196014e1ca02ebafef471988d";
 const web3 = new Web3(rpcURL);
 
 
-// let ABI = require("./4-web3readcontractabi.js") ;
-// const contractAddress = "0x44a80163171b442591c0864da1b134b12201a496";
-
-
-
-
 // getting latest block with THEN 
 web3.eth.getBlockNumber().then(console.log);
 
@@ -32,9 +26,6 @@ const getLatestBlockNumber = async () => {
     }
 }
 getLatestBlockNumber()
-
-
-
 
 
 
@@ -69,9 +60,6 @@ getBlockDetails();
 
 
 
-
-
-
 // ****************************************************************************************
 
 web3.eth.getBlockNumber().then((latest) => {
@@ -94,3 +82,15 @@ const getBlockData = async () => {
     }
 }
 getBlockData();
+
+
+
+
+
+// ****************************************************************************************
+
+// get transaction from a given block
+
+const blockHash = '0xa78bd5f0be88cc23883f7d5553ff9e2ff7bbbc13ca9b658a179d88c840a7e8f9';
+
+web3.eth.getTransactionFromBlock(blockHash, 3).then(console.log)
