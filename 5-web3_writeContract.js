@@ -3,10 +3,12 @@ const Web3 = require('web3');
 const rpcURL = "https://ropsten.infura.io/v3/80c615a196014e1ca02ebafef471988d";
 const Tx = require("ethereumjs-tx").Transaction;
 const web3 = new Web3(rpcURL);
+require('dotenv').config()
 
 const accountS = "0x53Acdd0B5C83B9BA58849f07B8B88301C37f9619";
-const Private_Key = 'c85927cd1d3aedcfc615155149aaa8c13ca26f9d77704ed71abfc9e15a9949ef';
-const Private_KeyS = Buffer.from(Private_Key, 'hex');
+
+const private_key = process.env.pvtkey;
+const Private_KeyS = Buffer.from(private_key, 'hex');
 
 const account1 = "0x653A48939074AD27afBd28560642bBeCf9d8E1d7";
 // const account2 = "0x4AD5187C111A2b06F5fC93afaDB81Fd9100A0c13";
