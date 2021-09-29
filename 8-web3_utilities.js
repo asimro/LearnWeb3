@@ -50,14 +50,15 @@ console.log(web3.utils.randomHex(8))
 
 
 // Get access to the underscore JS library
+let _ = require('underscore-node');
+console.log(_)
 
-const _ = web3.utils._();
 
-_.each({ key1: 'value1', key2: 'value2' }, (value, key) => {
+_.each({ Asim: 'Asim Value ', Raza: 'Raza Value' }, (value, key) => {
   console.log(key)
+  console.log(value)
 });
 
 
 
 
-console.log(web3.utils._)
